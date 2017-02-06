@@ -1,0 +1,11 @@
+#!/bin/bash
+cflags=$2                                                                       
+cflags="${cflags%\"}"                                                           
+cflags="${cflags#\"}"
+cd src_corpora/ZeroTierOne
+
+CC=$1 CXX=$1 CXXFLAGS="$cflags" CFLAGS="$cflags" make
+install -D zerotier-one -m 644 -t ../../$4/
+mv ../../$4/zerotier-one ../../$4/zerotierone.$3
+make clean
+cd ../..
